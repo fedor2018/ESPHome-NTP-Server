@@ -1,5 +1,10 @@
 #include "esphome.h"
+#ifdef USE_WIFI
 #include "esphome/components/wifi/wifi_component.h"
+#else 
+#include "esphome/components/ethernet/ethernet_component.h"
+#endif
+
 #include <WiFiUdp.h>
 
 WiFiUDP Udp;
@@ -105,7 +110,11 @@ void processNTP() {
     tempval = timestamp;
 
     // Set refid to IP address if not locked
+    #ifdef USE_WIFI
     IPAddress myIP = wifi::global_wifi_component->get_ip_addresses()[0];
+    #else
+    IPAddress myIP = ethernet::global_eth_component->get_ip_addresses()[0];
+    #endif
     packetBuffer[12] = myIP[0];
     packetBuffer[13] = myIP[1];
     packetBuffer[14] = myIP[2];

@@ -4,6 +4,8 @@ Adds NTP capabilities to the ESPHome platform.
 
 ** Fixed duplicate sources in "NTP Server info"
 
+** Fixed Ethernet/Wifi compatibility
+
 ## Basic Usage
 
 Host an NTP server from an ESP device. Works with any time source in the ESPHome ecosystem.
